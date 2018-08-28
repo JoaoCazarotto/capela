@@ -14,4 +14,8 @@ public class LoginService implements LoginServiceInterface {
 		public void CadastraLogin(Login l) {
 			loginRepository.saveAndFlush(l);
 		}
+		
+		public void DeletaLogin(Login l) {
+			loginRepository.delete(l);
+		}
 }

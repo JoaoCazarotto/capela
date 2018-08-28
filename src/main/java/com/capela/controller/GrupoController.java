@@ -18,32 +18,30 @@ public class GrupoController {
 		
 		@Autowired
 		private GrupoServiceInterface grupoServiceInterface;
-	
-		@GetMapping("/listarGrupo/{id}")
-		public ModelAndView listarGrupo(@PathVariable ("id") Long id) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/listarGrupo");
+		
+		
+		@GetMapping("/listarGrupo")
+		public List<Grupo> listarGrupo() {
 		List<Grupo> grupos = grupoServiceInterface.listarGrupo();
-		mav.addObject("lista_grupos", grupos);
-		return mav;
+		return grupos;
 		}
 	
 		@PostMapping("/deletagrupo")
 		public ModelAndView deletaGrupo(@RequestBody Long id) {
 		grupoServiceInterface.deletarGrupo(id);
-		return new ModelAndView ("/deletaGrupo");
+		return new ModelAndView ("deletaGrupo");
 		}
 	
 		@PostMapping("/editaGrupo")
 		public ModelAndView editaGrupo(@RequestBody Grupo g) {
 		grupoServiceInterface.editarGrupo(g);
-		return new ModelAndView ("/editaGrupo");
+		return new ModelAndView ("editaGrupo");
 		}
 	
 		@PostMapping("/adicionarGrupo")
 		public ModelAndView CriarGrupo(@RequestBody Grupo g) {
 			grupoServiceInterface.criarGrupo(g);
-			return new ModelAndView("/adicionarGrupo");
+			return new ModelAndView("adicionarGrupo");
 		}
 	
 }

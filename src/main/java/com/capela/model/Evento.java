@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +21,7 @@ public class Evento {
 	private Long id;
 	private String nome;
 	private String endereco;
-	@ManyToOne 
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Grupo grupo;
 	@Column(name = "data_hora")
 	private LocalDateTime dataHora;
