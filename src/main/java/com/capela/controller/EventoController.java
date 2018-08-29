@@ -20,10 +20,9 @@ public class EventoController {
 	@Autowired
 	private EventoServiceInterface eventoServiceInterface;		
 	
-	@GetMapping("/listarEventos")
+	@GetMapping("/api/listarEventos")
 	public List<Evento> listarEvento() {
-		List<Evento> eventos = eventoServiceInterface.listarEventos();
-		return eventos;
+		return eventoServiceInterface.listarEventos();	
 	}
 	
 	@GetMapping("/deletarEvento/{id}")
@@ -42,13 +41,9 @@ public class EventoController {
 		return mav;
 	}
 	
-	@PostMapping("/listarEventoGrupo")
-	public ModelAndView ListarEventoGrupo(@RequestBody Long id) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("listarEventoGrupo");
-		List<Evento> eventosGrupo = eventoServiceInterface.listaEventoGrupo(id);
-		mav.addObject("lista_eventos_grupos", eventosGrupo);
-		return mav;
+	@PostMapping("/api/listarEventoGrupo")
+	public List<Evento> ListarEventoGrupo(@RequestBody Long id) {
+		return eventoServiceInterface.listaEventoGrupo(id);
 	}
 	
 	@PostMapping("/adicionarEvento")
