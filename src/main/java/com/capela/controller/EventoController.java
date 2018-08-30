@@ -13,8 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.capela.model.*;
 import com.capela.service.EventoServiceInterface;
 
-/*@SessionAttributes("name")*/
-//Só atributos com role podem usar controller
 @RestController
 public class EventoController {
 	@Autowired

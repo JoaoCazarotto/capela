@@ -3,12 +3,10 @@ package com.capela.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.capela.model.Evento;
 import com.capela.model.Grupo;
@@ -22,6 +20,7 @@ public class HomeController{
 	@Autowired
 	private GrupoServiceInterface grupoServiceInterface;
 	
+	@CrossOrigin(origins ="*")
 	@GetMapping("/")
 	public ModelAndView Home(){
 		ModelAndView mav = new ModelAndView();
@@ -33,14 +32,4 @@ public class HomeController{
 		return mav;
 		
 	    }
-
-		@Bean
-	    public ViewResolver getViewResolver() {
-	        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-	        resolver.setPrefix("resources/templates/");
-	        resolver.setSuffix(".jsp");
-	        return resolver;
-	    }
-	
-	
 }
