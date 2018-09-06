@@ -1,6 +1,7 @@
 package com.capela.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,10 @@ import com.capela.repository.GrupoRepository;
 public class GrupoService implements GrupoServiceInterface {
 	@Autowired
 	private GrupoRepository grupoInterface;
+	
+	public Optional<Grupo> buscaGrupo(Long id) {
+		return grupoInterface.findById(id);
+	}
 	
 	public List<Grupo> listarGrupo(){
 		return grupoInterface.findAll();
@@ -26,6 +31,6 @@ public class GrupoService implements GrupoServiceInterface {
 	}
 	
 	public void criarGrupo(Grupo g) {
-		grupoInterface.save(g);
+		grupoInterface.saveAndFlush(g);
 	}
 }

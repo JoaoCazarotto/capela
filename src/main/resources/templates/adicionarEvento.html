@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+    <head>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <meta http-equiv="Content-Type" content="text/html" charset="iso-8859-1">
+        <title>Formulario de eventos</title>
+    </head>
+    <body>
+        <header >
+        	 <nav class="nav">
+				<a sec:authorize="isAuthenticated()" th:href="@{api/index}">Home</a>
+				<a sec:authorize="hasRole('ADMIN')" th:href="@{/adicionarGrupo}">Adicionar Grupo </a>
+				<a sec:authorize="hasRole('GRUPO')" th:href="@{/adicionarEvento}"> Adicionar Evento</a>
+				<a sec:authorize="isAuthenticated()" th:href="@{/listarGrupo}">Grupos</a>
+				<a sec:authorize="isAuthenticated()" th:href="@{/listarEvento}">Eventos</a>
+	
+			</nav>
+	
+        </header>
+            <table class="align-middle">
+            <form class="form-group" th:action="@{/adicionarEvento}" th:object="${evento}" method="post">
+                <tr>
+                    <td>Nome Evento:</td>
+                    <td><input type="text" th:field="*{nome}" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>Endere&ccedil;o:</td>
+                    <td><input type="text" th:field="*{endereco}" class="form-control"></td>
+                </tr>                <tr>
+                    <td>Grupo:</td>
+                    <td><input type="text" th:field="*{grupo}" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>Data e Hora:</td>
+                    <td><input type="datetime-local" th:field="*{dataHora}" class="form-control"></td>
+                </tr>
+                
+                <tr>
+                    <td>Descri&ccedil;&atilde;o: </td>
+                    <td><textarea th:field="*{descricao}" class="form-control"></textarea></td>
+                </tr>
+                <tr>
+                    <td>Imagem Evento:</td>
+                    <td><input type="file" th:field="*{foto}" class="form"></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" class="btn btn-primary"></td>
+                </tr>
+            </form>
+        </table>
+    </body>
+</html>

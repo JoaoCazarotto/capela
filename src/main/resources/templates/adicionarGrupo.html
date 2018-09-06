@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org" 
+	  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+    <head>
+    
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>Formulário de grupos</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+  <nav class="nav">
+				<a sec:authorize="isAuthenticated()" th:href="@{api/index}">Home</a>
+				<a sec:authorize="hasRole('ADMIN')" th:href="@{/adicionarGrupo}">Adicionar Grupo </a>
+				<a sec:authorize="hasRole('GRUPO')" th:href="@{/adicionarEvento}"> Adicionar Evento</a>
+				<a sec:authorize="isAuthenticated()" th:href="@{/listarGrupo}">Grupos</a>
+				<a sec:authorize="isAuthenticated()" th:href="@{/listarEvento}">Eventos</a>
+	
+			</nav>
+        <table>
+            <form class="form-group" th:action=@{/adicionarGrupo} th:object=${grupo} method="post">
+                
+                <input type="hidden" th:field="*{id}">
+                
+                <tr>
+                    <td>Nome Grupo:</td>
+                    <td><input type="text" th:field="*{nome}" class="form-control"></td>
+                </tr>
+                 <tr>
+                    <td>Descrição:</td>
+                    <td><textarea th:field="*{descricao}" class="form-control"></textarea></td>
+                </tr>
+                
+                <tr>
+                    <td>Líder:</td>
+                    <td><input type="text" th:field="*{lider}" class="form-control"></td>
+                </tr>
+               
+                 <tr>
+                    <td>Imagem Grupo:</td>
+                    <td><input class="form" type="file" th:field="*{foto}" ></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" class="btn btn-primary"></td>
+                </tr>
+            </form>
+        </table>
+</body>
+</html>

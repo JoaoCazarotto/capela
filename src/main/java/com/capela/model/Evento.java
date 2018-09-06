@@ -27,6 +27,10 @@ public class Evento {
 	private LocalDateTime dataHora;
 	private byte foto;
 	private String descricao;
+	private String facebook;
+	private String whatsapp;
+	
+	public Evento() {}
 	
 	public Evento(String nome, String endereco, Grupo grupo, LocalDateTime dataHora, byte foto, String descricao) {
 		this.nome = nome;

@@ -1,5 +1,5 @@
 
-    <table class="nav">
+    <table >
         <tr>
             <td><a href="index.php">Home</a></td>
             <td><a href="adicionarEvento.php"> Adicionar Evento</a></td>

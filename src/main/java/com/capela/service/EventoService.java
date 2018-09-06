@@ -1,6 +1,7 @@
 package com.capela.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,10 @@ public class EventoService implements EventoServiceInterface {
 	
 	public void deletarEvento(Long id) {
 		eventoInterface.deleteById(id);
+	}
+	
+	public Optional<Evento> buscarEvento(Long id) {
+		return eventoInterface.findById(id);
 	}
 	
 }

@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "grupos")
@@ -19,18 +22,28 @@ public class Grupo {
 	private String nome;
 	private String descricao;
 	private String lider;
-	private byte foto;
+	@Lob
+	private String foto;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "grupo")
 	private List<Evento> eventos;
 	
 	public Grupo() {};
 	
-	public Grupo(String nome, String descricao, String lider, byte foto, List<Evento> eventos) {
+	public Grupo(String nome, String descricao, String lider, String foto, List<Evento> eventos) {
 		this.nome = nome;
 		this.descricao = descricao;
 		this.lider = lider;
 		this.foto = foto;
 		this.eventos = eventos;
+	}
+	
+
+	public Grupo(String nome, String descricao, String lider) {
+		this.nome = nome;
+		this.descricao = descricao;
+		this.lider = lider;
+		
+		
 	}
 	
 	public Grupo(String nome, String descricao, String lider, List<Evento> eventos) {
@@ -39,7 +52,15 @@ public class Grupo {
 		this.lider = lider;
 		this.eventos = eventos;
 	} 
+
 	
+	public Grupo(String nome, String descricao, String lider, String foto) {
+		this.nome = nome;
+		this.descricao = descricao;
+		this.lider = lider;
+		this.foto = foto;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -64,10 +85,10 @@ public class Grupo {
 	public void setLider(String lider) {
 		this.lider = lider;
 	}
-	public byte getFoto() {
+	public String getFoto() {
 		return foto;
 	}
-	public void setFoto(byte foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 	public List<Evento> getEventos() {
@@ -76,7 +97,5 @@ public class Grupo {
 	public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
 	}
-	
-	
 	
 }

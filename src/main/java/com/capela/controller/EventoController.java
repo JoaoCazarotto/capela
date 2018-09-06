@@ -18,38 +18,31 @@ public class EventoController {
 	@Autowired
 	private EventoServiceInterface eventoServiceInterface;		
 	
-	@GetMapping("/api/listarEventos")
-	public List<Evento> listarEvento() {
-		return eventoServiceInterface.listarEventos();	
-	}
-	
-	@GetMapping("/deletarEvento/{id}")
-	public ModelAndView deletarEvento(@PathVariable ("id") Long id) {
+	@GetMapping("/editarEvento")
+	public ModelAndView editarEvento(@RequestBody Long id) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("deletarEvento");
-		eventoServiceInterface.deletarEvento(id);
+		mav.setViewName("adicionarEvento");
+		mav.addObject("evento", eventoServiceInterface.buscarEvento(id));
 		return mav;
 	}
 	
 	@PostMapping("/editarEvento")
-	public ModelAndView editarEvento(@RequestBody Evento e) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("editarEvento");
+	public void editarEvento(@RequestBody Evento e) {
 		eventoServiceInterface.editarEvento(e);
-		return mav;
 	}
 	
-	@PostMapping("/api/listarEventoGrupo")
-	public List<Evento> ListarEventoGrupo(@RequestBody Long id) {
-		return eventoServiceInterface.listaEventoGrupo(id);
+	
+	@GetMapping("/adicionarEvento")
+	public ModelAndView CriarEvento(){
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("adicionarEvento");
+		mav.addObject("evento", new Evento());
+		return mav;
 	}
 	
 	@PostMapping("/adicionarEvento")
-	public ModelAndView CriarEvento(@RequestBody Evento e){
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("adicionarEvento");
+	public void CriarEvento(@RequestBody Evento e){
 		eventoServiceInterface.criaEvento(e);
-		return mav;
 	}
 	
 }
