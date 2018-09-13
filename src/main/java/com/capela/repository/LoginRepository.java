@@ -7,5 +7,4 @@ import com.capela.model.Login;
 
 @Repository
 public interface LoginRepository extends JpaRepository<Login, Long> {
-	
 }

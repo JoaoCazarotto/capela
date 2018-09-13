@@ -1,4 +1,4 @@
-/*package com.capela.config;
+package com.capela.config;
 
 
 import org.springframework.context.annotation.Configuration;
@@ -29,4 +29,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			
 	}
 	
-}*/
+}

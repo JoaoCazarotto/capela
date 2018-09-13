@@ -4,13 +4,16 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -19,12 +22,18 @@ public class Grupo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
 	private String nome;
 	private String descricao;
+	@NotNull
 	private String lider;
-	@Lob
 	private String foto;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "grupo")
+	@NotNull
+	@OneToOne(fetch = FetchType.LAZY)
+	private Login login;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinTable(name = "grupos_eventos", joinColumns = {@JoinColumn(name = "grupo_id")}, 
+										inverseJoinColumns = {@JoinColumn(name = "evento_id")})
 	private List<Evento> eventos;
 	
 	public Grupo() {};
@@ -60,7 +69,6 @@ public class Grupo {
 		this.lider = lider;
 		this.foto = foto;
 	}
-
 	public Long getId() {
 		return id;
 	}
@@ -97,5 +105,10 @@ public class Grupo {
 	public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
 	}
-	
+	public Login getLogin() {
+		return login;
+	}
+	public void setLogin(Login login) {
+		this.login = login;
+	}
 }

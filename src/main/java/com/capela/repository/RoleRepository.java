@@ -1,12 +1,11 @@
 package com.capela.repository;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.capela.model.Grupo;
+import com.capela.model.Role;
 
 @Repository
-public interface GrupoRepository extends JpaRepository<Grupo, Long> {
+public interface RoleRepository extends JpaRepository<Role, Long> {
 
 }
